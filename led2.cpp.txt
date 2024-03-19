@@ -1,0 +1,20 @@
+void loo(){
+    tiempo2 = millis();
+    distancia = ultrasonic.Ranging(CM); //Lectura sensor de ultrasonidos
+     
+    if(distancia <= 20 && (tiempo2 > (tiempo1+5000))){  //si la distancia es menor de 20...
+  tiempo1 = millis(); //Actualiza el tiempo actual
+    tiempoSegundos = tiempo1/5000;
+        //movemos el servo en una dirección  
+        miniservo1.write(180);
+        miniservo2.write(0); 
+        digitalWrite(led, HIGH);   // enciende el LED (HIGH)
+        delay(500);   
+    }else{  //si no hay nada, siguen en la posición inicial
+    miniservo1.write(90);
+    miniservo2.write(90);
+    digitalWrite(led, LOW);   // apagamos el LED (LOW)
+    }  
+  
+    delay(500);  
+}
